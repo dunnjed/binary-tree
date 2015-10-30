@@ -6,6 +6,15 @@ var watchify    = require('watchify');
 var exorcist    = require('exorcist');
 var browserify  = require('browserify');
 var browserSync = require('browser-sync').create();
+var sass        = require('gulp-sass');
+var reload      = browserSync.reload;
+
+var src = {
+    scss: 'app/scss/*.scss',
+    css:  'app/css',
+    html: 'app/*.html'
+};
+
 
 // Input file.
 watchify.args.debug = true;
@@ -42,11 +51,25 @@ gulp.task('bundle', function () {
     return bundle();
 });
 
+
+// Compile sass into CSS
+gulp.task('sass', function() {
+    return gulp.src(src.scss)
+        .pipe(sass())
+        .pipe(gulp.dest(src.css))
+        .pipe(reload({stream: true}));
+});
+
+
 /**
  * First bundle, then serve from the ./app directory
  */
-gulp.task('default', ['bundle'], function () {
+gulp.task('default', ['bundle', 'sass'], function () {
     browserSync.init({
         server: "./app"
     });
+	
+	gulp.watch(src.scss, ['sass']);
+    gulp.watch(src.html).on('change', reload);
 });
+
