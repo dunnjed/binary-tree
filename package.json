@@ -21,5 +21,16 @@
   "bugs": {
     "url": "https://github.com/dunnjed/binary-tree/issues"
   },
-  "homepage": "https://github.com/dunnjed/binary-tree"
+  "homepage": "https://github.com/dunnjed/binary-tree",
+  "devDependencies": {
+    "babelify": "^6.4.0",
+    "browser-sync": "^2.9.11",
+    "browserify": "^12.0.1",
+    "exorcist": "^0.4.0",
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.1.0",
+    "gulp-util": "^3.0.7",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.5.0"
+  }
 }
